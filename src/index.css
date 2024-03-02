@@ -1,6 +1,7 @@
 html {
   box-sizing: border-box;
 }
+
 *,
 *:before,
 *:after {
@@ -27,6 +28,7 @@ body {
   line-height: 1.5;
   color: #121212;
 }
+
 textarea,
 input,
 button {
@@ -40,6 +42,7 @@ button {
   line-height: 1.5;
   margin: 0;
 }
+
 button {
   color: #3992ff;
   font-weight: 500;
@@ -61,20 +64,24 @@ button:active {
   align-items: flex-start;
   gap: 1rem;
 }
+
 #task h1 form {
   display: flex;
   align-items: center;
   margin-top: 0.25rem;
 }
+
 #task h1 form button {
   box-shadow: none;
   font-size: 1.5rem;
   font-weight: 400;
   padding: 0;
 }
+
 #task h1 form button[value="true"] {
   color: #a4a4a4;
 }
+
 #task h1 form button[value="true"]:hover,
 #task h1 form button[value="false"] {
   color: #eeb004;
@@ -110,7 +117,7 @@ form[action$="destroy"] button {
   flex-direction: column;
 }
 
-#sidebar > * {
+#sidebar>* {
   padding-left: 2rem;
   padding-right: 2rem;
 }
@@ -134,7 +141,7 @@ form[action$="destroy"] button {
   top: 1px;
 }
 
-#sidebar > div {
+#sidebar>div {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -143,11 +150,11 @@ form[action$="destroy"] button {
   border-bottom: 1px solid #e3e3e3;
 }
 
-#sidebar > div form {
+#sidebar>div form {
   position: relative;
 }
 
-#sidebar > div form input[type="search"] {
+#sidebar>div form input[type="search"] {
   width: 100%;
   padding-left: 2rem;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' class='h-6 w-6' fill='none' viewBox='0 0 24 24' stroke='%23999' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z' /%3E%3C/svg%3E");
@@ -157,7 +164,7 @@ form[action$="destroy"] button {
   position: relative;
 }
 
-#sidebar > div form input[type="search"].loading {
+#sidebar>div form input[type="search"].loading {
   background-image: none;
 }
 
@@ -175,6 +182,7 @@ form[action$="destroy"] button {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -190,6 +198,7 @@ form[action$="destroy"] button {
   float: right;
   color: #eeb004;
 }
+
 #sidebar nav a.active span {
   color: inherit;
 }
@@ -197,6 +206,7 @@ form[action$="destroy"] button {
 i {
   color: #818181;
 }
+
 #sidebar nav .active i {
   color: inherit;
 }
@@ -262,27 +272,17 @@ i {
   line-height: 1.2;
 }
 
-#task h1 + p {
+#task h1+p {
   margin: 0;
 }
 
-#task h1 + p + p {
+#task h1+p+p {
   white-space: break-spaces;
 }
 
 #task h1:focus {
   outline: none;
   color: hsl(224, 98%, 58%);
-}
-
-#task a[href*="twitter"] {
-  display: flex;
-  font-size: 1.5rem;
-  color: #3992ff;
-  text-decoration: none;
-}
-#task a[href*="twitter"]:hover {
-  text-decoration: underline;
 }
 
 #task img {
@@ -294,7 +294,7 @@ i {
   object-fit: cover;
 }
 
-#task h1 ~ div {
+#task h1~div {
   display: flex;
   gap: 0.5rem;
   margin: 1rem 0;
@@ -306,41 +306,30 @@ i {
   flex-direction: column;
   gap: 1rem;
 }
-#task-form > p:first-child {
+
+#task-form>p:first-child {
   margin: 0;
   padding: 0;
 }
-#task-form > p:first-child > :nth-child(2) {
+
+#task-form>p:first-child> :nth-child(2) {
   margin-right: 1rem;
 }
-#task-form > p:first-child,
+
+#task-form>p:first-child,
 #task-form label {
   display: flex;
 }
+
 #task-form p:first-child span,
 #task-form label span {
   width: 8rem;
 }
+
 #task-form p:first-child input,
 #task-form label input,
 #task-form label textarea {
   flex-grow: 2;
-}
-
-#task-form-avatar {
-  margin-right: 2rem;
-}
-
-#task-form-avatar img {
-  width: 12rem;
-  height: 12rem;
-  background: hsla(0, 0%, 0%, 0.2);
-  border-radius: 1rem;
-}
-
-#task-form-avatar input {
-  box-sizing: border-box;
-  width: 100%;
 }
 
 #task-form p:last-child {

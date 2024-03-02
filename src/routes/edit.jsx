@@ -19,44 +19,19 @@ export default function EditTask() {
             <p>
                 <span>Name</span>
                 <input
-                    placeholder="First"
-                    aria-label="First name"
+                    placeholder="Name"
+                    aria-label="Name"
                     type="text"
-                    name="first"
-                    defaultValue={task.first}
-                />
-                <input
-                    placeholder="Last"
-                    aria-label="Last name"
-                    type="text"
-                    name="last"
-                    defaultValue={task.last}
+                    name="name"
+                    defaultValue={task.name}
                 />
             </p>
             <label>
-                <span>Twitter</span>
-                <input
-                    type="text"
-                    name="twitter"
-                    placeholder="@jack"
-                    defaultValue={task.twitter}
-                />
-            </label>
-            <label>
-                <span>Avatar URL</span>
-                <input
-                    placeholder="https://example.com/avatar.jpg"
-                    aria-label="Avatar URL"
-                    type="text"
-                    name="avatar"
-                    defaultValue={task.avatar}
-                />
-            </label>
-            <label>
-                <span>Notes</span>
+                <span>Description</span>
                 <textarea
-                    name="notes"
-                    defaultValue={task.notes}
+                    placeholder="Description"
+                    name="description"
+                    defaultValue={task.description}
                     rows={6}
                 />
             </label>

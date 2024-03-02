@@ -81,9 +81,9 @@ export default function Root() {
                           : ""
                     }
                   >
-                    {task.first || task.last ? (
+                    {task.name ? (
                       <>
-                        {task.first} {task.last}
+                        {task.name}
                       </>
                     ) : (
                       <i>No Name</i>

@@ -28,17 +28,10 @@ export default function Task() {
   return (
     <div id="task">
       <div>
-        <img
-          key={task.avatar}
-          src={task.avatar || null}
-        />
-      </div>
-
-      <div>
         <h1>
-          {task.first || task.last ? (
+          {task.name ? (
             <>
-              {task.first} {task.last}
+              {task.name}
             </>
           ) : (
             <i>No Name</i>
@@ -46,18 +39,7 @@ export default function Task() {
           <Favorite task={task} />
         </h1>
 
-        {task.twitter && (
-          <p>
-            <a
-              target="_blank"
-              href={`https://twitter.com/${task.twitter}`}
-            >
-              {task.twitter}
-            </a>
-          </p>
-        )}
-
-        {task.notes && <p>{task.notes}</p>}
+        {task.description && <p>{task.description}</p>}
 
         <div>
           <Form action="edit">
