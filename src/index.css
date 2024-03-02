@@ -84,7 +84,7 @@ button:active {
 
 #task h1 form button[value="true"]:hover,
 #task h1 form button[value="false"] {
-  color: #eeb004;
+  color: #2fc448;
 }
 
 form[action$="destroy"] button {
@@ -196,7 +196,7 @@ form[action$="destroy"] button {
 
 #sidebar nav a span {
   float: right;
-  color: #eeb004;
+  color: #2fc448;
 }
 
 #sidebar nav a.active span {

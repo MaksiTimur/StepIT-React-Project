@@ -89,7 +89,7 @@ export default function Root() {
                       <i>No Name</i>
                     )}
                     {" "}
-                    {task.favorite && <span>★</span>}
+                    {task.checked && <span>☑</span>}
                   </NavLink>
                 </li>
               ))}

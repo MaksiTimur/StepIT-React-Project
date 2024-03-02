@@ -5,7 +5,7 @@ export async function action({ request, params }) {
   let formData = await request.formData();
 
   return updateTask(params.taskId, {
-    favorite: formData.get("favorite") === "true",
+    checked: formData.get("checked") === "true",
   });
 }
 
@@ -36,7 +36,7 @@ export default function Task() {
           ) : (
             <i>No Name</i>
           )}{" "}
-          <Favorite task={task} />
+          <Checked task={task} />
         </h1>
 
         {task.description && <p>{task.description}</p>}
@@ -66,26 +66,26 @@ export default function Task() {
   );
 }
 
-function Favorite({ task }) {
+function Checked({ task }) {
   const fetcher = useFetcher();
-  let favorite = task.favorite;
+  let checked = task.checked;
 
   if (fetcher.formData) {
-    favorite = fetcher.formData.get("favorite") === "true";
+    checked = fetcher.formData.get("checked") === "true";
   }
 
   return (
     <fetcher.Form method="post">
       <button
-        name="favorite"
-        value={favorite ? "false" : "true"}
+        name="checked"
+        value={checked ? "false" : "true"}
         aria-label={
-          favorite
-            ? "Remove from favorites"
-            : "Add to favorites"
+          checked
+            ? "Remove from checked"
+            : "Add to checked"
         }
       >
-        {favorite ? "★" : "☆"}
+        {checked ? "☑" : "☐"}
       </button>
     </fetcher.Form>
   );
