@@ -1,63 +1,63 @@
 import { Form, useLoaderData, useFetcher } from "react-router-dom";
-import { getContact, updateContact } from "../contacts";
+import { getTask, updateTask } from "../tasks";
 
 export async function action({ request, params }) {
   let formData = await request.formData();
 
-  return updateContact(params.contactId, {
+  return updateTask(params.taskId, {
     favorite: formData.get("favorite") === "true",
   });
 }
 
 export async function loader({ params }) {
-  const contact = await getContact(params.contactId);
+  const task = await getTask(params.taskId);
 
-  if (!contact) {
+  if (!task) {
     throw new Response("", {
       status: 404,
       statusText: "Not Found",
     });
   }
 
-  return { contact };
+  return { task };
 }
 
-export default function Contact() {
-  const { contact } = useLoaderData();
+export default function Task() {
+  const { task } = useLoaderData();
 
   return (
-    <div id="contact">
+    <div id="task">
       <div>
         <img
-          key={contact.avatar}
-          src={contact.avatar || null}
+          key={task.avatar}
+          src={task.avatar || null}
         />
       </div>
 
       <div>
         <h1>
-          {contact.first || contact.last ? (
+          {task.first || task.last ? (
             <>
-              {contact.first} {contact.last}
+              {task.first} {task.last}
             </>
           ) : (
             <i>No Name</i>
           )}{" "}
-          <Favorite contact={contact} />
+          <Favorite task={task} />
         </h1>
 
-        {contact.twitter && (
+        {task.twitter && (
           <p>
             <a
               target="_blank"
-              href={`https://twitter.com/${contact.twitter}`}
+              href={`https://twitter.com/${task.twitter}`}
             >
-              {contact.twitter}
+              {task.twitter}
             </a>
           </p>
         )}
 
-        {contact.notes && <p>{contact.notes}</p>}
+        {task.notes && <p>{task.notes}</p>}
 
         <div>
           <Form action="edit">
@@ -84,9 +84,9 @@ export default function Contact() {
   );
 }
 
-function Favorite({ contact }) {
+function Favorite({ task }) {
   const fetcher = useFetcher();
-  let favorite = contact.favorite;
+  let favorite = task.favorite;
 
   if (fetcher.formData) {
     favorite = fetcher.formData.get("favorite") === "true";
