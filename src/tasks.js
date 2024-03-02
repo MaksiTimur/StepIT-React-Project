@@ -1,10 +1,9 @@
-import localforage from "localforage";
 import { matchSorter } from "match-sorter";
 import sortBy from "sort-by";
 
 export async function getTasks(query) {
     await fakeNetwork(`getTasks:${query}`);
-    let tasks = await localforage.getItem("tasks");
+    let tasks = JSON.parse(await localStorage.getItem("tasks"));
     if (!tasks) tasks = [];
     if (query) {
         tasks = matchSorter(tasks, query, { keys: ["first", "last"] });
@@ -24,14 +23,14 @@ export async function createTask() {
 
 export async function getTask(id) {
     await fakeNetwork(`task:${id}`);
-    let tasks = await localforage.getItem("tasks");
+    let tasks = JSON.parse(await localStorage.getItem("tasks"));
     let task = tasks.find(task => task.id === id);
     return task ?? null;
 }
 
 export async function updateTask(id, updates) {
     await fakeNetwork();
-    let tasks = await localforage.getItem("tasks");
+    let tasks = JSON.parse(await localStorage.getItem("tasks"));
     let task = tasks.find(task => task.id === id);
     if (!task) throw new Error("No task found for", id);
     Object.assign(task, updates);
@@ -40,7 +39,7 @@ export async function updateTask(id, updates) {
 }
 
 export async function deleteTask(id) {
-    let tasks = await localforage.getItem("tasks");
+    let tasks = JSON.parse(await localStorage.getItem("tasks"));
     let index = tasks.findIndex(task => task.id === id);
     if (index > -1) {
         tasks.splice(index, 1);
@@ -51,7 +50,7 @@ export async function deleteTask(id) {
 }
 
 function set(tasks) {
-    return localforage.setItem("tasks", tasks);
+    return localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
 // fake a cache so we don't slow down stuff we've already seen
