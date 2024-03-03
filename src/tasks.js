@@ -18,7 +18,7 @@ export async function createTask() {
     await fakeNetwork();
 
     let id = Math.random().toString(36).substring(2, 9);
-    let task = { id, createdAt: Date.now() };
+    let task = { id, createdAt: Date.now(), checked: false };
     let tasks = await getTasks();
 
     tasks.unshift(task);
@@ -47,6 +47,8 @@ export async function updateTask(id, updates) {
 
     Object.assign(task, updates);
     await set(tasks);
+
+    console.log(task);
 
     return task;
 }

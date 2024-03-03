@@ -11,7 +11,6 @@ import Root, {
 import ErrorPage from "./error-page";
 import Task, {
   loader as taskLoader,
-  action as taskAction,
 } from "./routes/task";
 import EditTask, {
   action as editAction,
@@ -39,7 +38,6 @@ const router = createBrowserRouter([
         path: "tasks/:taskId",
         element: <Task />,
         loader: taskLoader,
-        action: taskAction,
       },
       {
         path: "tasks/:taskId/edit",

@@ -217,10 +217,6 @@ i {
   list-style: none;
 }
 
-#sidebar li {
-  margin: 0.25rem 0;
-}
-
 #sidebar nav a {
   display: flex;
   align-items: center;
@@ -235,17 +231,40 @@ i {
   gap: 1rem;
 }
 
-#sidebar nav a:hover {
+#sidebar li {
+  margin: 0.25rem 0;
+  display: flex;
+  align-items: center;
+}
+
+#sidebar nav li:hover {
   background: #e3e3e3;
 }
 
-#sidebar nav a.active {
+#sidebar nav li.active {
   background: hsl(224, 98%, 58%);
   color: white;
 }
 
-#sidebar nav a.pending {
+#sidebar nav li.pending {
   color: hsl(224, 98%, 58%);
+}
+
+#sidebar nav li div.buttons {
+  display: flex;
+  margin-left: auto;
+  gap: 5px;
+}
+
+#sidebar nav li input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  margin-left: 2px;
+}
+
+#sidebar nav li a form {
+  display: flex;
+  align-items: center;
 }
 
 #detail {

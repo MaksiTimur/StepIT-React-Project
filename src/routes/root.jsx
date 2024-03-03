@@ -1,9 +1,11 @@
 import { Outlet, NavLink, useNavigation, useLoaderData, Form, redirect, useSubmit } from "react-router-dom";
-import { getTasks, createTask } from "../tasks";
+import { getTasks, createTask, updateTask } from "../tasks";
 import { useEffect } from "react";
+import Filters from "../components/Filter/Filters";
 
 export async function action() {
   const task = await createTask();
+
   return redirect(`/tasks/${task.id}/edit`);
 }
 
@@ -66,11 +68,29 @@ export default function Root() {
             <button type="submit">New</button>
           </Form>
         </div>
+        <Filters />
         <nav>
           {tasks.length ? (
             <ul>
               {tasks.map((task) => (
-                <li key={task.id}>
+                <li key={task.id} id={task.id}>
+                  {
+                    <Form method="post">
+                      <input
+                        onChange={e => {
+                          updateTask(task.id, { checked: e.target.checked });
+                        }}
+                        type="checkbox"
+                        name="checked"
+                        defaultChecked={task.checked}
+                        aria-label={
+                          task.checked
+                            ? "Remove from completed"
+                            : "Add to completed"
+                        }>
+                      </input>
+                    </Form>
+                  }
                   <NavLink
                     to={`tasks/${task.id}`}
                     className={({ isActive, isPending }) =>
@@ -88,9 +108,30 @@ export default function Root() {
                     ) : (
                       <i>No Name</i>
                     )}
-                    {" "}
-                    {task.checked && <span>☑</span>}
                   </NavLink>
+                  <div className="buttons">
+
+                    <Form action={`tasks/${task.id}/edit`}>
+                      <button type="submit">Edit</button>
+                    </Form>
+
+                    <Form
+                      method="post"
+                      action={`tasks/${task.id}/destroy`}
+                      onSubmit={(event) => {
+                        if (
+                          !window.confirm(
+                            "Please confirm you want to delete this record."
+                          )
+                        ) {
+                          event.preventDefault();
+                        }
+                      }}
+                    >
+                      <button type="submit">Delete</button>
+                    </Form>
+
+                  </div>
                 </li>
               ))}
             </ul>
