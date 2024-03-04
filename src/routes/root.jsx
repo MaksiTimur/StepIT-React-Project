@@ -3,6 +3,8 @@ import { getTasks, createTask, updateTask } from "../tasks";
 import { useEffect } from "react";
 import Filters from "../components/Filter/Filters";
 
+let filter = null;
+
 export async function action() {
   const task = await createTask();
 
@@ -13,7 +15,7 @@ export async function loader({ request }) {
   const url = new URL(request.url);
 
   const q = url.searchParams.get("q");
-  const tasks = await getTasks(q);
+  const tasks = await getTasks(q, filter);
 
   return { tasks, q };
 }
@@ -68,7 +70,9 @@ export default function Root() {
             <button type="submit">New</button>
           </Form>
         </div>
-        <Filters />
+        <Filters handleClick={(filterType) => {
+          filter = filterType;
+        }} arr={tasks} />
         <nav>
           {tasks.length ? (
             <ul>

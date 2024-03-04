@@ -1,11 +1,11 @@
 import FilterButton from "./FilterButton/FilterButton";
 
-const Filters = ({ handleFilter }) => {
+const Filters = ({ handleClick }) => {
     return (
         <div className="filters">
-            <FilterButton onClick={handleFilter} filterType={'All'}/>
-            <FilterButton onClick={handleFilter} filterType={'Completed'} />
-            <FilterButton onClick={handleFilter} filterType={'Uncompleted'} />
+            <FilterButton handleClick={handleClick} filterType={'All'} />
+            <FilterButton handleClick={handleClick} filterType={'Completed'} />
+            <FilterButton handleClick={handleClick} filterType={'Uncompleted'} />
         </div>
     )
 };

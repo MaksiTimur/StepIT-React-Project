@@ -1,7 +1,7 @@
 import { matchSorter } from "match-sorter";
 import sortBy from "sort-by";
 
-export async function getTasks(query) {
+export async function getTasks(query, filter) {
     await fakeNetwork(`getTasks:${query}`);
 
     let tasks = JSON.parse(await localStorage.getItem("tasks"));
@@ -9,6 +9,18 @@ export async function getTasks(query) {
     if (!tasks) tasks = [];
     if (query) {
         tasks = matchSorter(tasks, query, { keys: ["name"] });
+    }
+
+    switch (filter) {
+        case 'Completed':
+            tasks = tasks.filter(task => task.checked);
+            break;
+
+        case 'Uncompleted':
+            tasks = tasks.filter(task => !task.checked);
+            break;
+
+        default:
     }
 
     return tasks.sort(sortBy("last", "createdAt"));
@@ -47,8 +59,6 @@ export async function updateTask(id, updates) {
 
     Object.assign(task, updates);
     await set(tasks);
-
-    console.log(task);
 
     return task;
 }

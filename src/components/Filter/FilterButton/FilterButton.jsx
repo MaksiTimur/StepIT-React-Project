@@ -1,4 +1,4 @@
-const FilterButton = ({ handleFilter, filterType }) => {
+const FilterButton = ({ handleClick, filterType }) => {
     let filterContent = null;
 
     switch (filterType) {
@@ -21,7 +21,7 @@ const FilterButton = ({ handleFilter, filterType }) => {
     return (
         <button
             className="filter-button"
-            onClick={() => handleFilter(filterType)}
+            onClick={() => handleClick(filterType)}
         >
             {filterContent}
         </button>
